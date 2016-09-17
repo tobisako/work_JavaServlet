@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://aqtor.co.jp" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://aqtor.co.jp" xmlns:intf="http://aqtor.co.jp" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDLはApache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)によって生成されました / [en]-(WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT))-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://aqtor.co.jp" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getEchoTest">
+    <complexType>
+     <sequence>
+      <element name="echo" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getEchoTestResponse">
+    <complexType>
+     <sequence>
+      <element name="getEchoTestReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getEchoTestRequest">
+
+      <wsdl:part element="impl:getEchoTest" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEchoTestResponse">
+
+      <wsdl:part element="impl:getEchoTestResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="SOAPServerTest01">
+
+      <wsdl:operation name="getEchoTest">
+
+         <wsdl:input message="impl:getEchoTestRequest" name="getEchoTestRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEchoTestResponse" name="getEchoTestResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="SOAPServerTest01SoapBinding" type="impl:SOAPServerTest01">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getEchoTest">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEchoTestRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEchoTestResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="SOAPServerTest01Service">
+
+      <wsdl:port binding="impl:SOAPServerTest01SoapBinding" name="SOAPServerTest01">
+
+         <wsdlsoap:address location="http://localhost:8080/SOAPServerTest/services/SOAPServerTest01"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

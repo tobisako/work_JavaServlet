@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://aqtor.co.jp" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://aqtor.co.jp" xmlns:intf="http://aqtor.co.jp" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDLはApache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)によって生成されました / [en]-(WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT))-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://aqtor.co.jp" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getMyItem">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getMyItemResponse">
+    <complexType>
+     <sequence>
+      <element name="getMyItemReturn" type="impl:MyItemBean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="MyItemBean">
+    <sequence>
+     <element name="age" type="xsd:int"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="HelloAxis2">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="HelloAxis2Response">
+    <complexType>
+     <sequence>
+      <element name="HelloAxis2Return" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getMyItemResponse">
+
+      <wsdl:part element="impl:getMyItemResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="HelloAxis2Response">
+
+      <wsdl:part element="impl:HelloAxis2Response" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getMyItemRequest">
+
+      <wsdl:part element="impl:getMyItem" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="HelloAxis2Request">
+
+      <wsdl:part element="impl:HelloAxis2" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="MyService">
+
+      <wsdl:operation name="getMyItem">
+
+         <wsdl:input message="impl:getMyItemRequest" name="getMyItemRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getMyItemResponse" name="getMyItemResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="HelloAxis2">
+
+         <wsdl:input message="impl:HelloAxis2Request" name="HelloAxis2Request">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:HelloAxis2Response" name="HelloAxis2Response">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="MyServiceSoapBinding" type="impl:MyService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getMyItem">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getMyItemRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getMyItemResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="HelloAxis2">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="HelloAxis2Request">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="HelloAxis2Response">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="MyServiceService">
+
+      <wsdl:port binding="impl:MyServiceSoapBinding" name="MyService">
+
+         <wsdlsoap:address location="http://localhost:8080/SOAPServerTest3/services/MyService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

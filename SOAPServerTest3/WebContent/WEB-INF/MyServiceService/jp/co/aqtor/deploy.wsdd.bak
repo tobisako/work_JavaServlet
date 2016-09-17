@@ -1,0 +1,40 @@
+<!-- ハンドラ／チェインやサービスをデプロイする場合にはこのファイルを使用します / [en]-(Use this file to deploy some handlers/chains and services)           -->
+<!-- これを実行するには2つの方法があります: / [en]-(Two ways to do this:)                                                                                                    -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd                                                                                                              -->
+<!--      このコマンドをaxisサーバが起動した後に実行する方法 / [en]-(after the axis server is running)                                                                  -->
+<!-- 或いは / [en]-(or)                                                                                                                                                                   -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd                                                                                                       -->
+<!--      起動中のAxisエンジンと同ディレクトリへ移動した後、これらのコマンドを実行する方法です / [en]-(from the same directory that the Axis engine runs) -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- MyServiceService WSDL service からのサービス / [en]-(Services from MyServiceService WSDL service) -->
+
+  <service name="MyService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://aqtor.co.jp"/>
+      <parameter name="wsdlServiceElement" value="MyServiceService"/>
+      <parameter name="schemaQualified" value="http://aqtor.co.jp"/>
+      <parameter name="wsdlServicePort" value="MyService"/>
+      <parameter name="className" value="jp.co.aqtor.MyServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="MyService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getMyItem" qname="operNS:getMyItem" xmlns:operNS="http://aqtor.co.jp" returnQName="retNS:getMyItemReturn" xmlns:retNS="http://aqtor.co.jp" returnType="rtns:MyItemBean" xmlns:rtns="http://aqtor.co.jp" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://aqtor.co.jp" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="helloAxis2" qname="operNS:HelloAxis2" xmlns:operNS="http://aqtor.co.jp" returnQName="retNS:HelloAxis2Return" xmlns:retNS="http://aqtor.co.jp" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://aqtor.co.jp" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="helloAxis2 getMyItem"/>
+
+      <typeMapping
+        xmlns:ns="http://aqtor.co.jp"
+        qname="ns:MyItemBean"
+        type="java:jp.co.aqtor.MyItemBean"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
